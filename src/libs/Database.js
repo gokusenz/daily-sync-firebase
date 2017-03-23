@@ -17,13 +17,18 @@ class Database {
     this.db = firebase.database()
   }
 
-  saveData(name, yesterday, today, date) {
-    this.db.ref(`daily/${date}_${name}`).set({
-      name,
-      yesterday,
-      today,
-      date,
-    })
+  saveData(name, yesterday, today, date, team) {
+    try {
+      this.db.ref(`${team}/${date}_${name}`).set({
+        name,
+        yesterday,
+        today,
+        date,
+      })
+      return true
+    } catch (error) {
+      return false
+    }
   }
 }
 

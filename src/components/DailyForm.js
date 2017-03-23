@@ -2,8 +2,9 @@ import React from 'react'
 import InputText from './InputText'
 import TextArea from './TextArea'
 
-const DailyForm = ({ handleSubmit }) => (
+const DailyForm = ({ handleSubmit, team }) => (
   <form className="form-horizontal col-md-9 col-md-offset-1 col-xs-12" onSubmit={handleSubmit}>
+    <InputText name="team" type="hidden" value={team} />
     <div className="form-group">
       <label htmlFor="name" className="col-sm-3 control-label">ชื่อ</label>
       <div className="col-sm-8" >
