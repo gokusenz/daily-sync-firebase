@@ -4,7 +4,7 @@ import TextArea from './TextArea'
 import SubmitButton from './SubmitButton'
 
 const DailyForm = () => (
-  <form className="form-horizontal col-xs-10">
+  <form className="form-horizontal col-md-9 col-md-offset-1 col-xs-12">
     <div className="form-group">
       <label htmlFor="name" className="col-sm-3 control-label">ชื่อ</label>
       <div className="col-sm-8" >
