@@ -13,7 +13,7 @@ export default {
       mm = `0${mm}`
     }
 
-    today = `${mm}/${dd}/${yyyy}`
+    today = `${mm}${dd}${yyyy}`
     return today
   },
 }
