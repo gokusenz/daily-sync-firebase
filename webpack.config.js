@@ -4,6 +4,13 @@ const webpack = require('webpack')
 
 const task = process.env.NODE_ENV || 'development'
 const nodePort = process.env.NODE_PORT || '3000'
+const database = {
+  apiKey: process.env.apiKey,
+  authDomain: process.env.authDomain,
+  databaseURL: process.env.databaseURL,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId,
+}
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -77,6 +84,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(task),
+        DATABASE: JSON.stringify(database),
       },
     }),
   ],
