@@ -6,7 +6,7 @@ import DailyApp from '../components/DailyApp'
 const Routes = () => (
   <div>
     <Route exact path="/" component={App} />
-    <Route exact path="/coe" component={() => <DailyApp team="coe" />} />
+    <Route exact path="/coe" component={() => <DailyApp team="COE" />} />
   </div>
 )
 

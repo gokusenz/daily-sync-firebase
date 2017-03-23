@@ -16,7 +16,7 @@ export class DailyForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const result = this.database.saveData(e.target.name.value, e.target.yesterday.value, e.target.today.value, DateLib.getCurDate())
+    const result = this.database.saveData(e.target.name.value, e.target.yesterday.value, e.target.today.value, DateLib.getCurDate(), e.target.team.value)
     if (result) {
       alert('บันทึกข้อมูลเรียบร้อย')
       e.target.name.value = ''

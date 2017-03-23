@@ -19,8 +19,9 @@ class Database {
 
   saveData(name, yesterday, today, date, team) {
     try {
-      this.db.ref(`${team}/${date}_${name}`).set({
+      this.db.ref(`${date}/${team}/${name}`).set({
         name,
+        team,
         yesterday,
         today,
         date,
