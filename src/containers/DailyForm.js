@@ -8,6 +8,7 @@ export class DailyForm extends Component {
   constructor() {
     super()
     this.database = new Database(process.env.DATABASE)
+    this.database.getList()
   }
 
   static defaultProps = {

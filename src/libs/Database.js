@@ -31,6 +31,15 @@ class Database {
       return false
     }
   }
+
+  getList(team) {
+    this.db.ref('/03232017/COE').once('value').then((snapshot) => {
+      const dailyList = snapshot.val()
+      for (const key in snapshot.val()) {
+        console.log(dailyList[key])
+      }
+    })
+  }
 }
 
 export default Database
