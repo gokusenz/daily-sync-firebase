@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import DailyForm from './DaiyForm'
+import DailyForm from '../containers/DailyForm'
 import './App.scss'
 import logo from '../../public/images/logo.svg'
 
