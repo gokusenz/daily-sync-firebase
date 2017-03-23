@@ -33,12 +33,7 @@ class Database {
   }
 
   getList(team) {
-    this.db.ref('/03232017/COE').once('value').then((snapshot) => {
-      const dailyList = snapshot.val()
-      for (const key in snapshot.val()) {
-        console.log(dailyList[key])
-      }
-    })
+    return this.db.ref('/03232017/COE').once('value')
   }
 }
 
