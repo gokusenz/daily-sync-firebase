@@ -1,9 +1,34 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import InputText from './InputText'
+import TextArea from './TextArea'
+import SubmitButton from './SubmitButton'
 
 const DailyForm = () => (
-  <div className="daily-form">
-    
-  </div>
+  <form className="form-horizontal col-xs-10">
+    <div className="form-group">
+      <label htmlFor="name" className="col-sm-3 control-label">ชื่อ</label>
+      <div className="col-sm-8" >
+        <InputText name="name" type="text" />
+      </div>
+    </div>
+    <div className="form-group">
+      <label htmlFor="yesterday" className="col-sm-3 control-label">เมื่อวานทำอะไร</label>
+      <div className="col-sm-8" >
+        <TextArea name="yesterday" row="5" />
+      </div>
+    </div>
+    <div className="form-group">
+      <label htmlFor="today" className="col-sm-3 control-label">วันนี้ทำอะไร</label>
+      <div className="col-sm-8" >
+        <TextArea name="today" row="5" />
+      </div>
+    </div>
+    <div className="form-group">
+      <div className="col-sm-offset-2 col-sm-10">
+        <SubmitButton name="บันทึก" />
+      </div>
+    </div>
+  </form>
 )
 
 export default DailyForm
