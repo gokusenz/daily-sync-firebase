@@ -4,6 +4,9 @@ import Database from '../libs/Database'
 
 
 export class DailyForm extends Component {
+  state = {
+    dailyList: {},
+  }
 
   constructor() {
     super()
@@ -13,14 +16,16 @@ export class DailyForm extends Component {
   componentDidMount() {
     this.database.getList(this.props.team)
     .then((result) => {
-      this.dailyList = result.val()
+      this.setState({
+        dailyList: result.val(),
+      })
     })
   }
 
   render() {
     const { team } = this.props;
     return (
-      <DailyListComponent team={team} list={this.dailyList} />
+      <DailyListComponent team={team} dailyList={this.state.dailyList} />
     );
   }
 }
