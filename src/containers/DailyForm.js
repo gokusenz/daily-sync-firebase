@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
-
 import DailyFormComponent from '../components/DailyForm';
+import Database from '../libs/Database'
 
-class DailyForm extends Component {
+export class DailyForm extends Component {
   static defaultProps = {
     title: 'Login Form',
   }
 
-  handleSubmit = (values) => {
-    this.validateForm(values);
-    this.setState({ loading: true });
-    this.login({
-      username: values.username,
-      password: values.password,
-      userType: this.props.type,
-    });
-    this.props.reset();
+  handleSubmit = (e) => {
+    e.preventDefault();
+    // this.setState({ loading: true });
+    this.database = new Database(process.env.DATABASE);
+    this.database.saveData(e.target.name.value, e.target.yesterday.value, e.target.today.value, "2016")
+    // this.submit({});
+    // this.props.reset();
   }
 
   render() {
     const { error, handleSubmit, title } = this.props;
     return (
-      <DailyFormComponent />
+      <DailyFormComponent handleSubmit={this.handleSubmit} />
     );
   }
 }
