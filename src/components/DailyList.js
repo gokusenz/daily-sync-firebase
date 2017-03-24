@@ -8,8 +8,8 @@ const DailyList = ({ team, dailyList }) => (
     <div className="App-header">
       <h2>Daily List of ({team})</h2>
       <img src={logo} className="App-logo" alt="logo" />
-      <div className="col-xs-12 App-List">
-        <ul className="list-group">
+      <div className="App-List">
+        <ul className="list-group col-md-offset-3 col-md-6 col-xs-12 ">
           {
             dailyList.map(doc => (
               <ListItem key={doc.id} item={doc} />

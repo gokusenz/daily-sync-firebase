@@ -21,6 +21,11 @@
 
 .App-List {
   margin: 20px 0;
+
+  .list-group-item {
+    color: black;
+    text-align: left;
+  }
 }
 
 @keyframes App-logo-spin {
