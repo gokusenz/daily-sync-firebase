@@ -7,7 +7,6 @@ const ListItem = (props) => {
   return (
     <li className="list-group-item">
       <p>{item.name}</p>
-      <br />
       <p>เมื่อวานทำอะไร</p>
       <p>{item.yesterday}</p>
       <br />
