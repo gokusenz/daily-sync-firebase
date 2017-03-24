@@ -8,12 +8,13 @@ const DailyList = ({ team, dailyList }) => (
     <div className="App-header">
       <h2>Daily List of ({team})</h2>
       <img src={logo} className="App-logo" alt="logo" />
-      {
-        console.log('result', dailyList)
-        // dailyList.map((list, index) => (
-        //   <ListItem key={list.name} {...list} number={index + 1} />
-        // ))
-      }
+      <ul className="list-group">
+        {
+          dailyList.map(doc => (
+            <ListItem key={doc.id} item={doc} />
+          ))
+        }
+      </ul>
     </div>
   </div>
 )

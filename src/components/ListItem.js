@@ -2,13 +2,10 @@ import React from 'react'
 
 const ListItem = (props) => {
   const {
-    key,
-    number,
+    item
   } = props
   return (
-    <div>
-      {key}
-    </div>
+    <li className="list-group-item">{item.id}</li>
   )
 }
 

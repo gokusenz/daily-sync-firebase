@@ -5,7 +5,7 @@ import Database from '../libs/Database'
 
 export class DailyForm extends Component {
   state = {
-    dailyList: {},
+    dailyList: [],
   }
 
   constructor() {
@@ -13,11 +13,17 @@ export class DailyForm extends Component {
     this.database = new Database(process.env.DATABASE)
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.database.getList(this.props.team)
     .then((result) => {
+      const arr = []
+      const r = result.val();
+      for (var i in r) {
+        arr.push({id:i, ...r[i]})
+      }
+      console.log(arr)
       this.setState({
-        dailyList: result.val(),
+        dailyList: arr,
       })
     })
   }
@@ -25,7 +31,7 @@ export class DailyForm extends Component {
   render() {
     const { team } = this.props;
     return (
-      <DailyListComponent team={team} dailyList={this.state.dailyList} />
+        <DailyListComponent team={team} dailyList={this.state.dailyList} />
     );
   }
 }
