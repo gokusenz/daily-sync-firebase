@@ -8,7 +8,7 @@ const Routes = () => (
   <div>
     <Route exact path="/" component={App} />
     <Route exact path="/coe" component={() => <DailyApp team="COE" />} />
-    <Route exact path="/coe/list" component={() => <DailyList team="COE" />} />
+    <Route exact path="/list/coe" component={() => <DailyList team="COE" />} />
   </div>
 )
 

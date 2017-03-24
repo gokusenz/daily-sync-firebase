@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import InputText from './InputText'
 import TextArea from './TextArea'
 
@@ -25,7 +26,8 @@ const DailyForm = ({ handleSubmit, team }) => (
     </div>
     <div className="form-group">
       <div className="col-sm-offset-2 col-sm-10">
-        <button type="submit" className="btn btn-default" >บันทึก</button>
+        <button type="submit" className="btn btn-default">บันทึก</button>
+        <Link to={`list/${team}`} className="btn btn-default">List</Link>
       </div>
     </div>
   </form>
