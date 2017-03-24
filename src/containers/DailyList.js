@@ -4,13 +4,12 @@ import Database from '../libs/Database'
 
 
 export class DailyForm extends Component {
-  state = {
-    dailyList: [],
-  }
-
   constructor() {
     super()
     this.database = new Database(process.env.DATABASE)
+    this.state = {
+      dailyList: [],
+    }
   }
 
   componentWillMount() {
@@ -21,7 +20,6 @@ export class DailyForm extends Component {
       for (var i in r) {
         arr.push({id:i, ...r[i]})
       }
-      console.log(arr)
       this.setState({
         dailyList: arr,
       })
@@ -31,7 +29,7 @@ export class DailyForm extends Component {
   render() {
     const { team } = this.props;
     return (
-        <DailyListComponent team={team} dailyList={this.state.dailyList} />
+      <DailyListComponent team={team} dailyList={this.state.dailyList} />
     );
   }
 }

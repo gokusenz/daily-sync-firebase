@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
 class Sample extends Component {
-  state = {}
+  constructor() {
+    super()
+    this.state = {}
+  }
 
   funcSomething = () => {
 
