@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DailyListComponent from '../components/DailyList';
 import Database from '../libs/Database'
+import DateLib from '../libs/Date'
 
 
 export class DailyForm extends Component {
@@ -13,7 +14,7 @@ export class DailyForm extends Component {
   }
 
   componentWillMount() {
-    this.database.getList(this.props.team)
+    this.database.getList(DateLib.getCurDate(), this.props.team)
     .then((result) => {
       const arr = []
       const r = result.val();

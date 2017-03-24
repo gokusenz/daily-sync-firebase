@@ -32,8 +32,8 @@ class Database {
     }
   }
 
-  getList(team) {
-    return this.db.ref('/03232017/COE').once('value')
+  getList(date, team) {
+    return this.db.ref(`/${date}/${team}`).once('value')
   }
 }
 
