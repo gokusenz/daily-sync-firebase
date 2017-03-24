@@ -2,6 +2,7 @@ import * as firebase from 'firebase'
 
 class Database {
   constructor(database) {
+    console.log('connnect db')
     // Set the configuration for your app
     // TODO: Replace with your project's config object
     const config = {
