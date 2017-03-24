@@ -1,6 +1,6 @@
 export default {
-  getCurDate() {
-    let today = new Date()
+  getDate() {
+    const today = new Date()
     let dd = today.getDate()
     let mm = today.getMonth() + 1 // January is 0!
     const yyyy = today.getFullYear()
@@ -13,7 +13,20 @@ export default {
       mm = `0${mm}`
     }
 
-    today = `${mm}${dd}${yyyy}`
+    return [
+      mm,
+      dd,
+      yyyy,
+    ]
+  },
+  getCurDate() {
+    const date = this.getDate()
+    const today = `${date.mm}${date.dd}${date.yyyy}`
+    return today
+  },
+  getFullCurDate() {
+    const date = this.getDate()
+    const today = `${date.mm}/${date.dd}/${date.yyyy}`
     return today
   },
 }
