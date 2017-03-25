@@ -12,7 +12,6 @@ class Database {
       messagingSenderId: database.messagingSenderId,
     }
     const otherApp = firebase.initializeApp(config, instancesName)
-    console.log(otherApp.name)
 
     // Get a reference to the database service
     this.db = otherApp.database()
