@@ -16,7 +16,7 @@ export class DailyForm extends Component {
       e.target.name.value,
       e.target.yesterday.value,
       e.target.today.value,
-      DateLib.getCurDate(),
+      DateLib.daily_date.value,
       e.target.team.value
     )
     if (result) {
@@ -32,7 +32,7 @@ export class DailyForm extends Component {
   render() {
     const { team } = this.props;
     return (
-      <DailyFormComponent handleSubmit={this.handleSubmit} team={team} />
+      <DailyFormComponent handleSubmit={this.handleSubmit} team={team} curDate={DateLib.getCurDate()} />
     );
   }
 }
