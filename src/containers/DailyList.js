@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import DailyListComponent from '../components/DailyList'
 import Database from '../libs/Database'
 import DateLib from '../libs/Date'
-
+import LineApi from '../libs/LineApi'
 
 export class DailyForm extends Component {
   constructor() {
@@ -15,6 +15,7 @@ export class DailyForm extends Component {
   }
 
   componentWillMount() {
+    console.log(LineApi.lineNotify('test'))
     const chooseDate = DateLib.getCurDate()
     this.database.getList(chooseDate, this.props.team)
     .then((result) => {

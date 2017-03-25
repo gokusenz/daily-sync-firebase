@@ -77,6 +77,10 @@ module.exports = {
     port: nodePort,
     hot: true,
     historyApiFallback: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': 'true',
+    },
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
