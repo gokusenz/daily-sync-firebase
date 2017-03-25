@@ -1,8 +1,7 @@
 import * as firebase from 'firebase'
 
 class Database {
-  constructor(database) {
-    console.log('connnect db')
+  constructor(database, instancesName) {
     // Set the configuration for your app
     // TODO: Replace with your project's config object
     const config = {
@@ -12,10 +11,11 @@ class Database {
       storageBucket: database.storageBucket,
       messagingSenderId: database.messagingSenderId,
     }
-    firebase.initializeApp(config)
+    const otherApp = firebase.initializeApp(config, instancesName)
+    console.log(otherApp.name)
 
     // Get a reference to the database service
-    this.db = firebase.database()
+    this.db = otherApp.database()
   }
 
   saveData(name, yesterday, today, date, team) {

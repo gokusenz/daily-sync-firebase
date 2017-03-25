@@ -7,7 +7,7 @@ import DateLib from '../libs/Date'
 export class DailyForm extends Component {
   constructor() {
     super()
-    this.database = new Database(process.env.DATABASE)
+    this.database = new Database(process.env.DATABASE, 'DailyList')
     this.state = {
       dailyList: [],
       chooseDate: '',
