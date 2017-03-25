@@ -10,7 +10,7 @@ const DailyList = ({ date, team, dailyList }) => (
       <h2>Daily List of ({team})</h2>
       <img src={logo} className="App-logo" alt="logo" />
     </div>
-    <div className="App-List">
+    <div className="App-List col-xs-12">
       <h3>{date}</h3>
       <ul className="list-group col-md-offset-3 col-md-6 col-xs-12 ">
         {
