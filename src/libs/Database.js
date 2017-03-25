@@ -11,7 +11,8 @@ class Database {
       storageBucket: database.storageBucket,
       messagingSenderId: database.messagingSenderId,
     }
-    const otherApp = firebase.initializeApp(config, instancesName)
+    const randomString = new Date().getTime()
+    const otherApp = firebase.initializeApp(config, instancesName + randomString)
 
     // Get a reference to the database service
     this.db = otherApp.database()
