@@ -16,7 +16,7 @@ export class DailyForm extends Component {
       e.target.name.value,
       e.target.yesterday.value,
       e.target.today.value,
-      DateLib.daily_date.value,
+      e.target.daily_date.value,
       e.target.team.value
     )
     if (result) {

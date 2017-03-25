@@ -1,7 +1,7 @@
 import React from 'react'
 
-const InputText = ({ name, type, value }) => (
-  <input type={type} className="form-control" name={name} id={name} value={value} onChange={() => {}} required />
+const InputText = ({ name, type, defaultValue }) => (
+  <input type={type} className="form-control" name={name} id={name} defaultValue={defaultValue} onChange={() => {}} required />
 )
 
 export default InputText

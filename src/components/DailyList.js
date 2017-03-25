@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import ListItem from './ListItem'
 import './App.scss'
 import logo from '../../public/images/logo.svg'
@@ -19,6 +20,7 @@ const DailyList = ({ date, team, dailyList }) => (
         }
       </ul>
     </div>
+    <Link to={`/${team}`} className="btn btn-default">Back</Link>
   </div>
 )
 
