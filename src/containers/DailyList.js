@@ -15,7 +15,10 @@ export class DailyForm extends Component {
   }
 
   componentWillMount() {
-    console.log(LineApi.lineNotify('test'))
+    // LineApi.lineNotify('test')
+    // .then((result) => {
+    //   console.log(result)
+    // })
     const chooseDate = DateLib.getCurDate()
     this.database.getList(chooseDate, this.props.team)
     .then((result) => {
