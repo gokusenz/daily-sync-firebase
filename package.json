@@ -58,6 +58,7 @@
     "firebase": "^3.7.3",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-nl2br": "^0.2.0",
     "react-redux": "^4.4.5",
     "react-router-dom": "^4.0.0",
     "redux": "^3.6.0"
