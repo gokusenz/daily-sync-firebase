@@ -33,7 +33,7 @@ const DailyForm = ({ handleSubmit, team, curDate }) => (
     <div className="form-group">
       <div className="col-sm-offset-2 col-sm-10">
         <button type="submit" className="btn btn-success">Submit</button>
-        <Link to={`/list/${team}`} className="btn btn-primary btn-list">Daily list</Link>
+        <Link to={`/report/${team}`} className="btn btn-primary btn-list">Report</Link>
       </div>
     </div>
   </form>
