@@ -4,7 +4,7 @@ import Database from '../libs/Database'
 import DateLib from '../libs/Date'
 import LineApi from '../libs/LineApi'
 
-export class DailyForm extends Component {
+export class DailyList extends Component {
   constructor() {
     super()
     this.database = new Database(process.env.DATABASE, 'DailyList')
@@ -73,4 +73,4 @@ export class DailyForm extends Component {
   }
 }
 
-export default DailyForm
+export default DailyList
