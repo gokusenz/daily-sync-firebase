@@ -4,7 +4,7 @@ import ListItem from './ListItem'
 import './App.scss'
 import logo from '../../public/images/logo.svg'
 
-const DailyList = ({ date, team, dailyList }) => (
+const DailyList = ({ date, team, dailyList, handleReport }) => (
   <div className="App">
     <div className="App-header">
       <h2>Daily List of ({team})</h2>
@@ -20,7 +20,8 @@ const DailyList = ({ date, team, dailyList }) => (
         }
       </ul>
     </div>
-    <Link to={`/${team}`} className="btn btn-default">Back</Link>
+    <button className="btn btn-primary" onClick={() => handleReport(team)}>Send Report</button>
+    <Link to={`/${team}`} className="btn btn-default btn-list">Back</Link>
   </div>
 )
 
