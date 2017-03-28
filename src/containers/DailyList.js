@@ -34,7 +34,7 @@ export class DailyList extends Component {
   handleReport(team) {
     let reportList
     const chooseDate = DateLib.getCurDate()
-    let msg = `\n${chooseDate} #${team}\n\n`
+    let msg = `\nReport : https://daily-sync-app.firebaseapp.com/report/${team}\n\n${chooseDate} #${team}\n\n`
     this.database.getList(chooseDate, this.props.team)
     .then((result) => {
       const arr = []
