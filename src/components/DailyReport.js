@@ -16,7 +16,7 @@ const DailyReport = ({ date, team, dailyList, handleReport }) => (
         }
       </div>
     </div>
-    <Link to={`/${team}`} className="btn btn-default btn-list">Back</Link>
+    <Link to={`/list/${team}`} className="btn btn-default btn-list">Back</Link>
   </div>
 )
 

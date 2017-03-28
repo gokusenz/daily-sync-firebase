@@ -20,7 +20,8 @@ const DailyList = ({ date, team, dailyList, handleReport }) => (
         }
       </ul>
     </div>
-    <button className="btn btn-primary" onClick={() => handleReport(team)}>Send Report</button>
+    <button className="btn btn-primary" onClick={() => handleReport(team)}>Line Notify</button>
+    <Link to={`/report/${team}`} className="btn btn-success btn-list">Line Report</Link>
     <Link to={`/${team}`} className="btn btn-default btn-list">Back</Link>
   </div>
 )
