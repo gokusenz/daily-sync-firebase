@@ -8,6 +8,11 @@ export class DailyForm extends Component {
   constructor() {
     super()
     this.database = new Database(process.env.DATABASE, 'DailyApp')
+    this.state = {
+      yesterday: '',
+      handleLastDo: this.handleLastDo.bind(this),
+      handleChange: this.handleChange.bind(this),
+    }
   }
 
   handleSubmit = (e) => {
@@ -30,13 +35,28 @@ export class DailyForm extends Component {
   }
 
   handleLastDo(name) {
-    this.database.getLastDo(DateLib.getCurDate(), name)
+    new Promise((resolve, reject) => {
+      this.database.getLastDo(DateLib.getCurDate(), name, resolve)
+    })
+    .then((result) => {
+      this.setState({
+        yesterday: result
+      })
+      console.log(this.state.yesterday)
+    })
+  }
+
+  handleChange(event) {
+    console.log(event)
+    this.setState({
+      yesterday: event
+    })
   }
 
   render() {
     const { team } = this.props;
     return (
-      <DailyFormComponent handleSubmit={this.handleSubmit} team={team} curDate={DateLib.getCurDate()} />
+      <DailyFormComponent handleSubmit={this.handleSubmit} handleLastDo={this.state.handleLastDo} handleChange={this.state.handleChange} yesterday={this.state.yesterday} team={team} curDate={DateLib.getCurDate()} />
     );
   }
 }
