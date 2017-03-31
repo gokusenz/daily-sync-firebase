@@ -9,6 +9,7 @@ export class DailyForm extends Component {
     super()
     this.database = new Database(process.env.DATABASE, 'DailyApp')
     this.state = {
+      name: '',
       yesterday: '',
       handleLastDo: this.handleLastDo.bind(this),
       handleChange: this.handleChange.bind(this),
@@ -45,10 +46,10 @@ export class DailyForm extends Component {
     })
   }
 
-  handleChange(event) {
-    this.setState({
-      yesterday: event
-    })
+  handleChange(event, fieldName) {
+    let state = {}
+    state[fieldName] = event.target.value
+    this.setState(state)
   }
 
   render() {

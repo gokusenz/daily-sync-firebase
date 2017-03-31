@@ -15,7 +15,7 @@ const DailyForm = ({ handleSubmit, handleLastDo, handleChange, yesterday, team, 
     <div className="form-group">
       <label htmlFor="name" className="col-md-3 col-sm-2 control-label">ชื่อ</label>
       <div className="col-md-8 col-sm-10" >
-        <InputText name="name" type="text" />
+        <InputText name="name" type="text" handleChange={handleChange} />
       </div>
     </div>
     <div className="form-group">
