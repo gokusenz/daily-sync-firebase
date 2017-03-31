@@ -36,6 +36,24 @@ class Database {
   getList(date, team) {
     return this.db.ref(`/${date}/${team}`).once('value')
   }
+
+  getLastDo(curDate, name) {
+    return this.db.ref().limitToLast(2).on('child_added', (snapshot) => {
+      const data = snapshot.val()
+      const object = data.COE
+      for (const property in object) {
+        console.log(object[property].date)
+        if (object[property].date !== curDate) {
+          if (object[property].name === name) {
+            console.log(object[property].name)
+            return object[property].today
+          }
+        } else {
+          break
+        }
+      }
+    })
+  }
 }
 
 export default Database
