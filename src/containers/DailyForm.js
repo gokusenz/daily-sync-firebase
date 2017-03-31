@@ -29,6 +29,10 @@ export class DailyForm extends Component {
     }
   }
 
+  handleLastDo(name) {
+    this.database.getLastDo(DateLib.getCurDate(), name)
+  }
+
   render() {
     const { team } = this.props;
     return (
