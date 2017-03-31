@@ -37,8 +37,8 @@ class Database {
     return this.db.ref(`/${date}/${team}`).once('value')
   }
 
-  getLastDo(curDate, name) {
-    return this.db.ref().limitToLast(2).on('child_added', (snapshot) => {
+  getLastDo(curDate, name, resolve) {
+    this.db.ref().limitToLast(2).on('child_added', (snapshot) => {
       const data = snapshot.val()
       const object = data.COE
       for (const property in object) {
@@ -46,7 +46,7 @@ class Database {
         if (object[property].date !== curDate) {
           if (object[property].name === name) {
             console.log(object[property].name)
-            return object[property].today
+            resolve(object[property].today)
           }
         } else {
           break
