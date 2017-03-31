@@ -55,7 +55,7 @@ export class DailyForm extends Component {
   render() {
     const { team } = this.props;
     return (
-      <DailyFormComponent handleSubmit={this.handleSubmit} handleLastDo={this.state.handleLastDo} handleChange={this.state.handleChange} yesterday={this.state.yesterday} team={team} curDate={DateLib.getCurDate()} />
+      <DailyFormComponent name={this.state.name} handleSubmit={this.handleSubmit} handleLastDo={this.state.handleLastDo} handleChange={this.state.handleChange} yesterday={this.state.yesterday} team={team} curDate={DateLib.getCurDate()} />
     );
   }
 }
