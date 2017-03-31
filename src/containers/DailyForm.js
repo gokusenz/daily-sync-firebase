@@ -42,12 +42,10 @@ export class DailyForm extends Component {
       this.setState({
         yesterday: result
       })
-      console.log(this.state.yesterday)
     })
   }
 
   handleChange(event) {
-    console.log(event)
     this.setState({
       yesterday: event
     })

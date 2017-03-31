@@ -42,10 +42,8 @@ class Database {
       const data = snapshot.val()
       const object = data.COE
       for (const property in object) {
-        console.log(object[property].date)
         if (object[property].date !== curDate) {
           if (object[property].name === name) {
-            console.log(object[property].name)
             resolve(object[property].today)
           }
         } else {
