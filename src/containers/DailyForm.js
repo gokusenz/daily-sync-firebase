@@ -5,8 +5,8 @@ import DateLib from '../libs/Date'
 
 export class DailyForm extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.database = new Database(process.env.DATABASE, 'DailyApp')
     this.state = {
       name: '',

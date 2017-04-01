@@ -5,8 +5,8 @@ import DateLib from '../libs/Date'
 import LineApi from '../libs/LineApi'
 
 export class DailyReport extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.database = new Database(process.env.DATABASE, 'DailyList')
     this.state = {
       dailyList: [],
