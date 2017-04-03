@@ -13,6 +13,8 @@ const TodoReducer = (state = initialState, action) => {
         complete: false,
       }]
     }
+    case 'RECEIVE_PAGES':
+      return action.pages
     default:
       return state
   }

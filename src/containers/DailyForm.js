@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import addTodo from '../actions/Todo'
+import { loadPages } from '../actions/Todo'
 import DailyFormComponent from '../components/DailyForm';
 import Database from '../libs/Database'
 import DateLib from '../libs/Date'
@@ -48,10 +48,23 @@ export class DailyForm extends Component {
     })
   }
 
+  onReloadPages = () => {
+    this.props.onLoadPages()
+  }
+
   handleChange(event, fieldName) {
     let state = {}
     state[fieldName] = event.target.value
     this.setState(state)
+  }
+
+  shouldComponentUpdate(nextProps) {
+    console.log('update ', this.props.pages)
+    return this.props.pages !== nextProps.pages;
+  }
+
+  componentDidMount() {
+    this.onReloadPages()
   }
 
   render() {
@@ -62,4 +75,13 @@ export class DailyForm extends Component {
   }
 }
 
-export default connect(null, { addTodo })(DailyForm)
+const mapStateToProps = (state) => ({
+  pages: state
+})
+
+
+// export default connect(null, { addTodo })(DailyForm)
+export default connect(
+  mapStateToProps,
+  { onLoadPages: loadPages }
+)(DailyForm)
