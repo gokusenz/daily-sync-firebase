@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import addTodo from '../actions/Todo'
 import DailyFormComponent from '../components/DailyForm';
 import Database from '../libs/Database'
 import DateLib from '../libs/Date'
@@ -60,4 +62,4 @@ export class DailyForm extends Component {
   }
 }
 
-export default DailyForm;
+export default connect(null, { addTodo })(DailyForm)
