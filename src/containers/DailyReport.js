@@ -15,7 +15,7 @@ export class DailyReport extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const chooseDate = DateLib.getCurDate()
     this.database.getList(chooseDate, this.props.team)
     .then((result) => {
