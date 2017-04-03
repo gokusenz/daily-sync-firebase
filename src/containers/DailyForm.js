@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { loadPages } from '../actions/Todo'
+import { connectFirebase } from '../actions/Firebase'
 import DailyFormComponent from '../components/DailyForm';
 import Database from '../libs/Database'
 import DateLib from '../libs/Date'
@@ -9,18 +9,15 @@ export class DailyForm extends Component {
 
   constructor(props) {
     super(props)
-    this.database = new Database(process.env.DATABASE, 'DailyApp')
     this.state = {
       name: '',
       yesterday: '',
-      handleLastDo: this.handleLastDo.bind(this),
-      handleChange: this.handleChange.bind(this),
     }
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const result = this.database.saveData(
+    const result = this.props.database.saveData(
       e.target.name.value,
       e.target.yesterday.value,
       e.target.today.value,
@@ -37,51 +34,55 @@ export class DailyForm extends Component {
     }
   }
 
-  handleLastDo(name) {
+  handleLastDo = (e, name) => {
     new Promise((resolve, reject) => {
-      this.database.getLastDo(DateLib.getCurDate(), name, resolve)
+      this.props.database.getLastDo(DateLib.getCurDate(), name, resolve)
     })
     .then((result) => {
+      console.log(result)
       this.setState({
         yesterday: result
       })
+      console.log('state ', this.state.yesterday)
     })
+    e.preventDefault()
   }
 
-  onReloadPages = () => {
-    this.props.onLoadPages()
-  }
-
-  handleChange(event, fieldName) {
+  handleChange = (event, fieldName) => {
     let state = {}
     state[fieldName] = event.target.value
+    console.log(event.target.value)
     this.setState(state)
   }
 
-  shouldComponentUpdate(nextProps) {
-    console.log('update ', this.props.pages)
-    return this.props.pages !== nextProps.pages;
+  connectDatabase = () => {
+    this.props.onConnectFirebase()
   }
 
+  // shouldComponentUpdate(nextProps) {
+  //   console.log('update ', this.props.database)
+  //   return this.props.database !== nextProps.database;
+  // }
+
   componentDidMount() {
-    this.onReloadPages()
+    this.connectDatabase()
   }
 
   render() {
     const { team } = this.props;
     return (
-      <DailyFormComponent name={this.state.name} handleSubmit={this.handleSubmit} handleLastDo={this.state.handleLastDo} handleChange={this.state.handleChange} yesterday={this.state.yesterday} team={team} curDate={DateLib.getCurDate()} />
+      <DailyFormComponent name={this.state.name} handleSubmit={this.handleSubmit} handleLastDo={this.handleLastDo} handleChange={this.handleChange} yesterday={this.state.yesterday} team={team} curDate={DateLib.getCurDate()} />
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  pages: state
+  database: state.firebase
 })
 
 
 // export default connect(null, { addTodo })(DailyForm)
 export default connect(
   mapStateToProps,
-  { onLoadPages: loadPages }
+  { onConnectFirebase: connectFirebase }
 )(DailyForm)

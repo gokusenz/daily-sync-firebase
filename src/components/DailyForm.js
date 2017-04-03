@@ -27,13 +27,13 @@ const DailyForm = ({ handleSubmit, handleLastDo, handleChange, name, yesterday, 
     <div className="form-group">
       <label htmlFor="today" className="col-md-3 col-sm-2 control-label">วันนี้ทำอะไร</label>
       <div className="col-md-8 col-sm-10" >
-        <TextArea name="today" row="5" />
+        <TextArea name="today" row="5" value={yesterday} handleChange={handleChange} />
       </div>
     </div>
     <div className="form-group">
       <div className="col-sm-offset-2 col-sm-10">
         <button type="submit" className="btn btn-success">Submit</button>
-        <button className="btn btn-warning btn-list" onClick={() => handleLastDo(name)}>Get From Yesterday</button>
+        <button className="btn btn-warning btn-list" onClick={e => handleLastDo(e, name)}>Get From Yesterday</button>
         <Link to={`/report/${team}`} className="btn btn-primary btn-list">Report</Link>
       </div>
     </div>

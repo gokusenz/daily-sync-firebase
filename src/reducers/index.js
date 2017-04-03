@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import TodoReducer from './TodoReducer'
+import FirebaseReducer from './FirebaseReducer'
 
 const rootReducer = combineReducers({
-  todos: TodoReducer,
+  firebase: FirebaseReducer,
 })
 
 export default rootReducer

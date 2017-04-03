@@ -1,0 +1,14 @@
+import { CONNECT_FIREBASE } from '../actions/Types'
+
+const initialState = []
+
+const FirebaseReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case CONNECT_FIREBASE:
+      return action.payload
+    default:
+      return state
+  }
+}
+
+export default FirebaseReducer
