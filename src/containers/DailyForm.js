@@ -36,11 +36,13 @@ export class DailyForm extends Component {
 
   handleLastDo = (e, name) => {
     e.preventDefault()
-    new Promise((resolve, reject) => {
-      this.props.database.getLastDo(DateLib.getCurDate(), name, resolve)
-    })
+    this.props.database.getYesterday(this.props.team, name)
     .then((result) => {
-      this.props.onChangeField('yesterday', result)
+      const arr = []
+      const data = result.val()
+      this.setState({
+        yesterday: data.today,
+      })
     })
   }
 

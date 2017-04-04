@@ -33,8 +33,8 @@ const DailyForm = ({ handleSubmit, handleLastDo, handleChange, name, yesterday, 
     <div className="form-group">
       <div className="col-sm-offset-2 col-sm-10">
         <button type="submit" className="btn btn-success">Submit</button>
-        <button className="btn btn-warning btn-list" onClick={e => handleLastDo(e, name)}>Get From Yesterday</button>
-        <Link to={`/report/${team}`} className="btn btn-primary btn-list">Report</Link>
+        <Link to={`/report/${team}`} className="btn btn-default btn-list">Go To Report</Link>
+        <button className="btn btn-default btn-list" onClick={e => handleLastDo(e, name)}>Get From Yesterday (NEW)</button>
       </div>
     </div>
   </form>

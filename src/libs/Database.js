@@ -27,6 +27,14 @@ class Database {
         today,
         date,
       })
+      this.db.ref(`YESTERDAY/${team}/${name}`).set({
+        name,
+        team,
+        yesterday,
+        today,
+        date,
+      })
+      
       return true
     } catch (error) {
       return false
@@ -37,21 +45,8 @@ class Database {
     return this.db.ref(`/${date}/${team}`).once('value')
   }
 
-  getLastDo(curDate, name, resolve) {
-    this.db.ref().limitToLast(2).on('child_added', (snapshot) => {
-      const data = snapshot.val()
-      const object = data.COE
-      for (const property in object) {
-        console.log(object[property].date)
-        if (object[property].date !== curDate) {
-          if (object[property].name === name) {
-            resolve(object[property].today)
-          }
-        } else {
-          break
-        }
-      }
-    })
+  getYesterday(team, name) {
+    return this.db.ref(`YESTERDAY/${team}/${name}`).once('value')
   }
 }
 
