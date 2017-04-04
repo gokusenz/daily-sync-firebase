@@ -54,7 +54,6 @@ export class DailyForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.name !== this.props.name | nextProps.yesterday !== this.props.yesterday) {
-      console.log('Render', nextProps)
       this.setState({
         yesterday: nextProps.yesterday
       });

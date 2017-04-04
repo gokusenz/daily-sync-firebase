@@ -70,7 +70,7 @@ export class DailyReport extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.database !== this.props.database) {
-      console.log('ReRender', this.props)
+      // console.log('ReRender', this.props)
       this.getList(nextProps.database)
     }
   }
@@ -89,7 +89,6 @@ export class DailyReport extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state)
   const { firebase } = state
   const returnState = {}
   returnState.database = firebase
