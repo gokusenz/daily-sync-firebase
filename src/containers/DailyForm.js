@@ -74,7 +74,6 @@ export class DailyForm extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-
   const { firebase, field } = state
   let returnState = {}
   returnState['database'] = firebase

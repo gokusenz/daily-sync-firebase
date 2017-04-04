@@ -1,6 +1,8 @@
 import { CONNECT_FIREBASE } from '../actions/Types'
 
-const initialState = []
+const initialState = {
+  firebase: '',
+}
 
 const FirebaseReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { connectFirebase } from '../actions/Firebase'
 import DailyReportComponent from '../components/DailyReport'
 import Database from '../libs/Database'
 import DateLib from '../libs/Date'
@@ -7,35 +9,21 @@ import LineApi from '../libs/LineApi'
 export class DailyReport extends Component {
   constructor(props) {
     super(props)
-    this.database = new Database(process.env.DATABASE, 'DailyList')
     this.state = {
       dailyList: [],
       chooseDate: '',
-      handleReport: this.handleReport.bind(this),
     }
   }
 
-  componentDidMount() {
-    const chooseDate = DateLib.getCurDate()
-    this.database.getList(chooseDate, this.props.team)
-    .then((result) => {
-      const arr = []
-      const r = result.val()
-      for (const i in r) {
-        arr.push({ id: i, ...r[i] })
-      }
-      this.setState({
-        dailyList: arr,
-        chooseDate,
-      })
-    })
+  connectDatabase = () => {
+    this.props.onConnectFirebase()
   }
 
-  handleReport(team) {
+  handleReport = (team) => {
     let reportList
     const chooseDate = DateLib.getCurDate()
     let msg = `\nReport : https://daily-sync-app.firebaseapp.com/report/${team}\n\n${chooseDate} #${team}\n\n`
-    this.database.getList(chooseDate, this.props.team)
+    this.props.database.getList(chooseDate, this.props.team)
     .then((result) => {
       const arr = []
       const r = result.val()
@@ -60,6 +48,33 @@ export class DailyReport extends Component {
     })
   }
 
+  getList = (database) => {
+    const chooseDate = DateLib.getCurDate()
+    database.getList(chooseDate, this.props.team)
+    .then((result) => {
+      const arr = []
+      const r = result.val()
+      for (const i in r) {
+        arr.push({ id: i, ...r[i] })
+      }
+      this.setState({
+        dailyList: arr,
+        chooseDate,
+      })
+    })
+  }
+
+  componentDidMount() {
+    this.connectDatabase()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.database !== this.props.database) {
+      console.log('ReRender', this.props)
+      this.getList(nextProps.database)
+    }
+  }
+
   render() {
     const { team } = this.props
     return (
@@ -67,10 +82,23 @@ export class DailyReport extends Component {
         date={this.state.chooseDate}
         team={team}
         dailyList={this.state.dailyList}
-        handleReport={this.state.handleReport}
+        handleReport={this.handleReport}
       />
     )
   }
 }
 
-export default DailyReport
+const mapStateToProps = (state, ownProps) => {
+  console.log(state)
+  const { firebase } = state
+  const returnState = {}
+  returnState.database = firebase
+  return returnState
+}
+
+export default connect(
+  mapStateToProps,
+  {
+    onConnectFirebase: connectFirebase,
+  }
+)(DailyReport)
