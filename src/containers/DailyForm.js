@@ -10,6 +10,9 @@ export class DailyForm extends Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      yesterday: '',
+    }
   }
 
   handleSubmit = (e) => {
@@ -32,14 +35,13 @@ export class DailyForm extends Component {
   }
 
   handleLastDo = (e, name) => {
+    e.preventDefault()
     new Promise((resolve, reject) => {
       this.props.database.getLastDo(DateLib.getCurDate(), name, resolve)
     })
     .then((result) => {
-      console.log(result)
       this.props.onChangeField('yesterday', result)
     })
-    e.preventDefault()
   }
 
   handleChange = (event, fieldName) => {
@@ -51,8 +53,11 @@ export class DailyForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.name !== this.props.name | nextProps.today !== this.props.today | nextProps.yesterday !== this.props.yesterday) {
-      console.log('nextProps', nextProps)
+    if (nextProps.name !== this.props.name | nextProps.yesterday !== this.props.yesterday) {
+      console.log('Render', nextProps)
+      this.setState({
+        yesterday: nextProps.yesterday
+      });
     }
   }
 
@@ -61,9 +66,9 @@ export class DailyForm extends Component {
   }
 
   render() {
-    const { team } = this.props;
+    const { name, team } = this.props;
     return (
-      <DailyFormComponent name={this.props.name} handleSubmit={this.handleSubmit} handleLastDo={this.handleLastDo} handleChange={this.handleChange} yesterday={this.props.yesterday} team={team} curDate={DateLib.getCurDate()} />
+      <DailyFormComponent name={name} handleSubmit={this.handleSubmit} handleLastDo={this.handleLastDo} handleChange={this.handleChange} yesterday={this.state.yesterday} team={team} curDate={DateLib.getCurDate()} />
     );
   }
 }

@@ -27,7 +27,7 @@ const DailyForm = ({ handleSubmit, handleLastDo, handleChange, name, yesterday, 
     <div className="form-group">
       <label htmlFor="today" className="col-md-3 col-sm-2 control-label">วันนี้ทำอะไร</label>
       <div className="col-md-8 col-sm-10" >
-        <TextArea name="today" row="5" value={yesterday} handleChange={handleChange} />
+        <TextArea name="today" row="5" handleChange={handleChange} />
       </div>
     </div>
     <div className="form-group">
