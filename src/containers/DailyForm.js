@@ -32,7 +32,6 @@ export class DailyForm extends Component {
   }
 
   handleLastDo = (e, name) => {
-    console.log(name)
     new Promise((resolve, reject) => {
       this.props.database.getLastDo(DateLib.getCurDate(), name, resolve)
     })
@@ -44,9 +43,6 @@ export class DailyForm extends Component {
   }
 
   handleChange = (event, fieldName) => {
-    // let state = {}
-    // state[fieldName] = event.target.value
-    // this.setState(state)
     this.props.onChangeField(fieldName, event.target.value)
   }
 
