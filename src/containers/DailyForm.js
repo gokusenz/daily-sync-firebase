@@ -16,6 +16,18 @@ export class DailyForm extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.name !== this.props.name | nextProps.yesterday !== this.props.yesterday) {
+      this.setState({
+        yesterday: nextProps.yesterday
+      });
+    }
+  }
+
+  componentDidMount() {
+    this.connectDatabase()
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
     const result = this.props.database.saveData(
@@ -64,18 +76,6 @@ export class DailyForm extends Component {
     .then((lineResult) => {
       console.log(lineResult)
     })
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.name !== this.props.name | nextProps.yesterday !== this.props.yesterday) {
-      this.setState({
-        yesterday: nextProps.yesterday
-      });
-    }
-  }
-
-  componentDidMount() {
-    this.connectDatabase()
   }
 
   render() {

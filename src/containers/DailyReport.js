@@ -15,6 +15,17 @@ export class DailyReport extends Component {
     }
   }
 
+  componentDidMount() {
+    this.connectDatabase()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.database !== this.props.database) {
+      // console.log('ReRender', this.props)
+      this.getList(nextProps.database)
+    }
+  }
+
   connectDatabase = () => {
     this.props.onConnectFirebase()
   }
@@ -62,17 +73,6 @@ export class DailyReport extends Component {
         chooseDate,
       })
     })
-  }
-
-  componentDidMount() {
-    this.connectDatabase()
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.database !== this.props.database) {
-      // console.log('ReRender', this.props)
-      this.getList(nextProps.database)
-    }
   }
 
   render() {
