@@ -5,6 +5,7 @@ import { onChange } from '../actions/Field'
 import DailyFormComponent from '../components/DailyForm';
 import Database from '../libs/Database'
 import DateLib from '../libs/Date'
+import LineApi from '../libs/LineApi'
 
 export class DailyForm extends Component {
 
@@ -26,6 +27,7 @@ export class DailyForm extends Component {
     )
     if (result) {
       alert('บันทึกข้อมูลเรียบร้อย')
+      this.sendToLine(e.target.name.value, e.target.yesterday.value, e.target.today.value)
       e.target.name.value = ''
       e.target.yesterday.value = ''
       e.target.today.value = ''
@@ -40,6 +42,7 @@ export class DailyForm extends Component {
     .then((result) => {
       const arr = []
       const data = result.val()
+      console.log(data)
       this.setState({
         yesterday: data.today,
       })
@@ -52,6 +55,15 @@ export class DailyForm extends Component {
 
   connectDatabase = () => {
     this.props.onConnectFirebase()
+  }
+
+  sendToLine(name, yesterday, today) {
+    const msg = `\n${name}\nเมื่อวานทำอะไร\n${yesterday}\nวันนี้ทำอะไร\n${today}\n`
+    console.log(msg)
+    LineApi.lineNotify(msg)
+    .then((lineResult) => {
+      console.log(lineResult)
+    })
   }
 
   componentWillReceiveProps(nextProps) {
