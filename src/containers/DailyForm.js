@@ -62,6 +62,10 @@ export class DailyForm extends Component {
   }
 
   handleChange = (event, fieldName) => {
+    // let state = {}
+    // state[fieldName] = event.target.value
+    // console.log(event.target.value)
+    // this.setState(state)
     this.props.onChangeField(fieldName, event.target.value)
   }
 
