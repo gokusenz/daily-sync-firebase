@@ -99,7 +99,6 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 
-// export default connect(null, { addTodo })(DailyForm)
 export default connect(
   mapStateToProps,
   { 
