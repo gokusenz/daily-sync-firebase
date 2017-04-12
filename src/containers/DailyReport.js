@@ -45,9 +45,9 @@ export class DailyReport extends Component {
 
       reportList.map(doc => (
         msg = msg.concat(doc.name)
-              .concat('\nวันนี้ทำอะไร\n')
+              .concat('\nเมื่อวานทำอะไร\n')
               .concat(doc.yesterday)
-              .concat('\nเมื่อวานทำอะไร\n\n')
+              .concat('\nวันนี้ทำอะไร\n\n')
               .concat(doc.today)
               .concat('\n\n')
       ))
