@@ -6,6 +6,3 @@ React Starter with Jest
 
 ## start server
 `npm run dev`
-
-## React Storybook started on
-`http://localhost:8080/`
