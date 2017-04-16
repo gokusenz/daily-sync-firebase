@@ -1,5 +1,4 @@
-# react-js-starter-with-jest
-React Starter with Jest
+# Daily sync with firebase (ReactJS)
 
 ## install packages
 `npm install`
