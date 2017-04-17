@@ -50,7 +50,7 @@ export class DailyReport extends Component {
         msg = msg.concat(doc.name)
               .concat('\nเมื่อวานทำอะไร\n')
               .concat(doc.yesterday)
-              .concat('\n\nวัันนี้ทำอะไร\n')
+              .concat('\n\nวันนี้ทำอะไร\n')
               .concat(doc.today)
               .concat('\n\n')
 
