@@ -60,6 +60,7 @@ export class DailyReport extends Component {
             console.log(lineResult)
           })
           reportCounter = 0
+          msg = ''
         }
       })
       if (reportCounter !== 0) {
