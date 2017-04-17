@@ -32,6 +32,7 @@ export class DailyReport extends Component {
 
   handleReport = (team) => {
     let reportList
+    let reportCounter
     const chooseDate = DateLib.getCurDate()
     let msg = `\nReport : https://daily-sync-app.firebaseapp.com/report/${team}\n\n${chooseDate} #${team}\n\n`
     this.props.database.getList(chooseDate, this.props.team)
@@ -42,20 +43,31 @@ export class DailyReport extends Component {
         arr.push({ id: i, ...r[i] })
       }
       reportList = arr
+      reportCounter = 0
 
-      reportList.map(doc => (
+      reportList.map(doc => {
+        reportCounter = reportCounter + 1
         msg = msg.concat(doc.name)
               .concat('\nเมื่อวานทำอะไร\n')
               .concat(doc.yesterday)
               .concat('\nวันนี้ทำอะไร\n\n')
               .concat(doc.today)
               .concat('\n\n')
-      ))
-      console.log(msg)
-      LineApi.lineNotify(msg)
-      .then((lineResult) => {
-        console.log(lineResult)
+
+        if(reportCounter === 3) {
+          LineApi.lineNotify(msg)
+          .then((lineResult) => {
+            console.log(lineResult)
+          })
+          reportCounter = 0
+        }
       })
+      if (reportCounter !== 0) {
+        LineApi.lineNotify(msg)
+        .then((lineResult) => {
+          console.log(lineResult)
+        })
+      } 
     })
   }
 
