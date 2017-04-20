@@ -68,7 +68,8 @@ export class DailyReport extends Component {
         .then((lineResult) => {
           console.log(lineResult)
         })
-      } 
+      }
+      alert('ส่งข้อมูลเรียบร้อย')
     })
   }
 
