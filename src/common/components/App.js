@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import './App.scss'
-import logo from '../../public/images/logo.svg'
+import logo from '../../../public/images/logo.svg'
 
 const App = ({ children }) => (
   <div className="App">

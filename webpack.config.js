@@ -18,7 +18,7 @@ module.exports = {
   devtool: 'eval-source-map',
   entry: [
     'react-hot-loader/patch',
-    path.resolve('src/index.js'),
+    path.resolve('src/client/index.js'),
   ],
   output: {
     filename: 'bundle.js',
