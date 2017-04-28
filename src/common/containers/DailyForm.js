@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { connectFirebase } from '../actions/Firebase'
 import { onChange } from '../actions/Field'
 import DailyFormComponent from '../components/DailyForm';
 import Database from '../libs/Database'
@@ -14,6 +13,7 @@ export class DailyForm extends Component {
     this.state = {
       yesterday: '',
     }
+    this.database = new Database()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -25,12 +25,11 @@ export class DailyForm extends Component {
   }
 
   componentDidMount() {
-    this.connectDatabase()
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const result = this.props.database.saveData(
+    const result = this.database.saveData(
       e.target.name.value,
       e.target.yesterday.value,
       e.target.today.value,
@@ -50,7 +49,7 @@ export class DailyForm extends Component {
 
   handleLastDo = (e, name) => {
     e.preventDefault()
-    this.props.database.getYesterday(this.props.team, name)
+    this.database.getYesterday(this.props.team, name)
     .then((result) => {
       const arr = []
       const data = result.val()
@@ -67,10 +66,6 @@ export class DailyForm extends Component {
     // console.log(event.target.value)
     // this.setState(state)
     this.props.onChangeField(fieldName, event.target.value)
-  }
-
-  connectDatabase = () => {
-    this.props.onConnectFirebase()
   }
 
   sendToLine(name, yesterday, today) {
@@ -91,9 +86,8 @@ export class DailyForm extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const { firebase, field } = state
+  const { field } = state
   let returnState = {}
-  returnState['database'] = firebase
   returnState[field[0]] = field[1]
   return returnState
 }
@@ -102,7 +96,6 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
   mapStateToProps,
   { 
-    onConnectFirebase: connectFirebase,
     onChangeField: onChange,
   }
 )(DailyForm)
