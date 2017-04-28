@@ -15,4 +15,6 @@ const otherApp = firebase.initializeApp(config, `DailyApp${randomString}`)
 // Get a reference to the database service
 const Database = otherApp.database()
 
+console.log('connect db')
+
 export default Database

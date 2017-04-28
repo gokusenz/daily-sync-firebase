@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { connectFirebase } from '../actions/Firebase'
 import DailyReportComponent from '../components/DailyReport'
 import Database from '../libs/Database'
 import DateLib from '../libs/Date'
@@ -13,21 +12,11 @@ export class DailyReport extends Component {
       dailyList: [],
       chooseDate: '',
     }
+    this.database = new Database()
   }
 
   componentDidMount() {
-    this.connectDatabase()
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.database !== this.props.database) {
-      // console.log('ReRender', this.props)
-      this.getList(nextProps.database)
-    }
-  }
-
-  connectDatabase = () => {
-    this.props.onConnectFirebase()
+    this.getList()
   }
 
   handleReport = (team) => {
@@ -35,7 +24,7 @@ export class DailyReport extends Component {
     let reportCounter
     const chooseDate = DateLib.getCurDate()
     let msg = `\nReport : https://daily-sync-app.firebaseapp.com/report/${team}\n\n${chooseDate} #${team}\n\n`
-    this.props.database.getList(chooseDate, this.props.team)
+    this.database.getList(chooseDate, this.props.team)
     .then((result) => {
       const arr = []
       const r = result.val()
@@ -73,9 +62,9 @@ export class DailyReport extends Component {
     })
   }
 
-  getList = (database) => {
+  getList = () => {
     const chooseDate = DateLib.getCurDate()
-    database.getList(chooseDate, this.props.team)
+    this.database.getList(chooseDate, this.props.team)
     .then((result) => {
       const arr = []
       const r = result.val()
@@ -103,15 +92,11 @@ export class DailyReport extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const { firebase } = state
-  const returnState = {}
-  returnState.database = firebase
-  return returnState
+  return state
 }
 
 export default connect(
   mapStateToProps,
   {
-    onConnectFirebase: connectFirebase,
   }
 )(DailyReport)
