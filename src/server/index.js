@@ -1,3 +1,8 @@
-require('babel-core/register')
+require('babel-register')
+const hook = require('css-modules-require-hook')
+require('dotenv').config()
 
-module.exports = require('./server.js')
+hook({ extensions: '.scss' })
+global.__CLIENT__ = false
+
+module.exports = require('./server')
