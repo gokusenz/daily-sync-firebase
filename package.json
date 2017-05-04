@@ -7,11 +7,14 @@
     "dev": "webpack-dev-server",
     "deploy": "node server.js",
     "build": "webpack --config webpack.prod.config.js --progress",
+    "build:client": "webpack --config webpack.prod.config.js",
+    "build:server": "babel -d dist src --copy-files",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "jest --config .jestrc",
     "test:watch": "npm run test -- --watch",
-    "start-dev-ssr": "nodemon ./src/server/index.js"
+    "start-dev-ssr": "nodemon ./src/server/index.js",
+    "start": "node dist/server/index.js"
   },
   "author": "",
   "license": "ISC",
