@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import InputText from './InputText'
 import TextArea from './TextArea'
 
