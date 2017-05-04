@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
+import { routerReducer } from 'react-router-redux'
 import FieldReducer from './FieldReducer'
 
-const rootReducer = combineReducers({
+export default combineReducers({
   field: FieldReducer,
+  routing: routerReducer,
 })
-
-export default rootReducer
