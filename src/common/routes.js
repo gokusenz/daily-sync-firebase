@@ -10,6 +10,7 @@ const routes = (store, history) => (
     onUpdate={() => window.scrollTo(0, 0)}
   >
     <Route path="/">
+      <IndexRedirect to="/coe" />
       <Route path="coe" component={() => <DailyApp team="COE" />} />
       <Route path="report/coe" component={() => <DailyReportsContainer team="COE" />} />
       <Redirect from="*" to="/coe" />
