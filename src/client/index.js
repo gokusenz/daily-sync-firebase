@@ -1,26 +1,15 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import { AppContainer } from 'react-hot-loader'
-import { createStore } from '../common/store'
-import AppRoot from '../common/components/AppRoot'
+import { render } from 'react-dom'
+import { browserHistory } from 'react-router'
 
-const store = createStore()
-const render = (Component) => {
-  ReactDOM.render(
-    <AppContainer>
-      <Provider store={store}>
-        <Component />
-      </Provider>
-    </AppContainer>,
-    document.getElementById('react-root')
-  )
-}
+import Root from '../common/Root'
 
-render(AppRoot)
+const initialState = window.__INITIAL_STATE__ || {}
 
-if (module.hot) {
-  module.hot.accept('../common/components/App', () => {
-    render(AppRoot)
-  })
-}
+render(
+  <Root
+    history={browserHistory}
+    initialState={initialState}
+  />
+  , document.getElementById('react-root'),
+)
