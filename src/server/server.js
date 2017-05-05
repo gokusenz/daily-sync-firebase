@@ -13,23 +13,25 @@ import configureStore from '../common/store'
 import prefetchData from './prefetchData'
 import css from './inlineCss'
 
+require('dotenv').config()
+
 const app = express()
-app.use(compression())
 const PORT = process.env.NODE_PORT || 3000
 
 const renderHTML = (reactComponent, initialState, meta) => (`
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset='utf-8'>
     <title>Daily Sync App!</title>
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
     <style>${css}</style>
   </head>
   <body>
     <div id='app'>${reactComponent}</div>
-    <link rel="preload" href="/dist/styles.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="/public/dist/styles.css" as="style" onload="this.rel='stylesheet'">
     <noscript>
-      <link rel="stylesheet" href="/dist/styles.css" media="all">
+      <link rel="stylesheet" href="/public/dist/styles.css" media="all">
     </noscript>
     <script defer>
       !function(e){"use strict";var n=function(n,t,o){function i(e){return a.body?e():void setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var s=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=s[s.length-1]}var f=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=f.length;t--;)if(f[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
@@ -38,7 +40,9 @@ const renderHTML = (reactComponent, initialState, meta) => (`
     <script>
       window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
     </script>
-    <script src='/dist/bundle.js' defer></script>
+    <script src='/public/dist/bundle.js' defer></script>
+    <script src="/public/js/jquery.min.js" defer></script>
+    <script src="/public/js/bootstrap.min.js" defer></script>
   </body>
 </html>
 `)
@@ -61,15 +65,7 @@ app.use((req, res) => {
   const store = configureStore(memoryHistory)
   const history = syncHistoryWithStore(memoryHistory, store)
 
-  // Safari: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/601.6.17
-  // (KHTML, like Gecko) Version/9.1.1 Safari/601.6.17'
-  // Chrome: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko)
-  // Chrome/57.0.2987.133 Safari/537.36'
-  // FireFox: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:51.0) Gecko/20100101 Firefox/51.0'
-  // IE9: 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)'
-  const userAgent = (req.headers['user-agent'].indexOf('MSIE') !== -1 ? parseInt(req.headers['user-agent'].split('MSIE')[1], 10) : req.headers['user-agent'])
   console.log(req.headers['user-agent'])
-  const isNotSupport = (userAgent < 9.0)
   match({
     routes: routes(store, history),
     location: req.originalUrl,
@@ -103,5 +99,3 @@ app.use((req, res) => {
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`)
 })
-
-module.exports = app

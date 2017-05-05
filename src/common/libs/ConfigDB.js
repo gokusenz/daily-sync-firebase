@@ -1,6 +1,12 @@
 import firebase from 'firebase'
 
-const database = process.env.DATABASE
+const database = {
+  apiKey: process.env.apiKey,
+  authDomain: process.env.authDomain,
+  databaseURL: process.env.databaseURL,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId,
+}
 
 const config = {
   apiKey: database.apiKey,

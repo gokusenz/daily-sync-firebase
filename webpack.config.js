@@ -6,13 +6,6 @@ const task = process.env.NODE_ENV || 'development'
 const nodePort = process.env.NODE_PORT || '3000'
 const lineUrl = process.env.LINE_URL || ''
 const lineToken = process.env.LINE_TOKEN || ''
-const database = {
-  apiKey: process.env.apiKey,
-  authDomain: process.env.authDomain,
-  databaseURL: process.env.databaseURL,
-  storageBucket: process.env.storageBucket,
-  messagingSenderId: process.env.messagingSenderId,
-}
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -30,6 +23,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         use: 'babel-loader',
+        exclude: /(node_modules)/,
       },
       {
         test: /\.css$/,
@@ -90,9 +84,13 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(task),
-        DATABASE: JSON.stringify(database),
         LINE_URL: JSON.stringify(lineUrl),
         LINE_TOKEN: JSON.stringify(lineToken),
+        apiKey: JSON.stringify(process.env.apiKey),
+        authDomain: JSON.stringify(process.env.authDomain),
+        databaseURL: JSON.stringify(process.env.databaseURL),
+        storageBucket: JSON.stringify(process.env.storageBucket),
+        messagingSenderId: JSON.stringify(process.env.messagingSenderId),
       },
     }),
   ],
