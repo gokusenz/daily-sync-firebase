@@ -18,7 +18,7 @@ require('dotenv').config()
 const app = express()
 const PORT = process.env.NODE_PORT || 3000
 
-const renderHTML = (reactComponent, initialState, meta) => (`
+const renderHTML = (reactComponent, initialState) => (`
 <!doctype html>
 <html>
   <head>
