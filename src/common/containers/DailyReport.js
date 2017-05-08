@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import DailyReportComponent from '../components/DailyReport'
+import { getReport } from '../actions/Report'
 import Database from '../libs/Database'
 import DateLib from '../libs/Date'
 import LineApi from '../libs/LineApi'
@@ -10,13 +11,13 @@ export class DailyReport extends Component {
     super(props)
     this.state = {
       dailyList: [],
-      chooseDate: '',
+      chooseDate: DateLib.getCurDate(),
     }
     this.database = new Database()
   }
 
   componentDidMount() {
-    this.getList()
+    this.props.onGetReport(this.props.params.team, this.state.chooseDate)
   }
 
   handleReport = (team) => {
@@ -24,7 +25,7 @@ export class DailyReport extends Component {
     let reportCounter
     const chooseDate = DateLib.getCurDate()
     let msg = `\nReport : https://daily-sync-app.firebaseapp.com/report/${team}\n\n${chooseDate} #${team}\n\n`
-    this.database.getList(chooseDate, this.props.team)
+    this.database.getList(chooseDate, this.props.params.team)
     .then((result) => {
       const arr = []
       const r = result.val()
@@ -62,41 +63,29 @@ export class DailyReport extends Component {
     })
   }
 
-  getList = () => {
-    const chooseDate = DateLib.getCurDate()
-    this.database.getList(chooseDate, this.props.team)
-    .then((result) => {
-      const arr = []
-      const r = result.val()
-      for (const i in r) {
-        arr.push({ id: i, ...r[i] })
-      }
-      this.setState({
-        dailyList: arr,
-        chooseDate,
-      })
-    })
-  }
-
   render() {
-    const { team } = this.props
     return (
       <DailyReportComponent
         date={this.state.chooseDate}
-        team={team}
-        dailyList={this.state.dailyList}
+        team={this.props.params.team}
+        dailyList={this.props.report}
         handleReport={this.handleReport}
       />
     )
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return state
-}
+DailyReport.need = [
+  (params) => (getReport(params.team, DateLib.getCurDate())),
+]
+
+const mapStateToProps = state => ({
+  report: state.report,
+})
 
 export default connect(
   mapStateToProps,
   {
+    onGetReport : getReport,
   }
 )(DailyReport)

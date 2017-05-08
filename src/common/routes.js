@@ -13,7 +13,7 @@ const routes = (store, history) => (
     <Route path="/">
       <IndexRedirect to="/404" />
       <Route path="coe" component={() => <DailyApp team="COE" />} />
-      <Route path="report/coe" component={() => <DailyReportsContainer team="COE" />} />
+      <Route path="report/:team" component={DailyReportsContainer} />
       <Route path="404" component={PageNotFound} />
       <Redirect from="*" to="/404" />
     </Route>

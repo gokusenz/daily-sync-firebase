@@ -1,2 +1,2 @@
-export const CONNECT_FIREBASE = 'CONNECT_FIREBASE'
+export const GET_REPORT = 'GET_REPORT'
 export const ON_CHANGE = 'ON_CHANGE'

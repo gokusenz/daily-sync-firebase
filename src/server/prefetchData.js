@@ -7,5 +7,6 @@ export default function prefetchData(dispatch, components, props) {
         .concat((wrappedComponent && wrappedComponent.need) || [])
         .concat(prev);
     }, []);
+    console.log(needs[0].toString())
   return Promise.all([...new Set(needs)].map(need => dispatch(need(props))));
 }
