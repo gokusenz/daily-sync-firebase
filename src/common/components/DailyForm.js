@@ -19,7 +19,10 @@ const DailyForm = ({ handleSubmit, handleLastDo, handleChange, name, yesterday, 
       </div>
     </div>
     <div className="form-group">
-      <label htmlFor="yesterday" className="col-md-3 col-sm-2 control-label">เมื่อวานทำอะไร</label>
+      <label htmlFor="yesterday" className="col-md-3 col-sm-2 control-label">
+        เมื่อวานทำอะไร
+        <button className="btn btn-warning" onClick={e => handleLastDo(e, name)}>Get Yesterday</button>
+      </label>
       <div className="col-md-8 col-sm-10" >
         <TextArea name="yesterday" row="5" value={yesterday} handleChange={handleChange} />
       </div>
@@ -34,7 +37,6 @@ const DailyForm = ({ handleSubmit, handleLastDo, handleChange, name, yesterday, 
       <div className="col-sm-offset-2 col-sm-10">
         <button type="submit" className="btn btn-success">Submit</button>
         <Link to={`/report/${team}`} className="btn btn-default btn-list">Go To Report</Link>
-        <button className="btn btn-default btn-list" onClick={e => handleLastDo(e, name)}>Get From Yesterday (NEW)</button>
       </div>
     </div>
   </form>
