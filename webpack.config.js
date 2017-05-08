@@ -69,6 +69,7 @@ module.exports = {
   },
   devServer: {
     host: '0.0.0.0',
+    contentBase: './public',
     hot: true,
     inline: true,
     port: nodePort,
