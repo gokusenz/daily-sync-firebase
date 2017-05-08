@@ -5,7 +5,12 @@ const initialState = []
 const ReportReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_REPORT:
-      return action.payloads.reportList
+      const arr = []
+      const r = action.reportList.val()
+      for (const i in r) {
+        arr.push({ id: i, ...r[i] })
+      }
+      return arr
     default:
       return state
   }
