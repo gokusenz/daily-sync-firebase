@@ -28,7 +28,7 @@ const renderHTML = (reactComponent, initialState) => (`
     <style>${css}</style>
   </head>
   <body>
-    <div id='app'>${reactComponent}</div>
+    <div id='react-root'>${reactComponent}</div>
     <link rel="preload" href="/public/dist/styles.css" as="style" onload="this.rel='stylesheet'">
     <noscript>
       <link rel="stylesheet" href="/public/dist/styles.css" media="all">
