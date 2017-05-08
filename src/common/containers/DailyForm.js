@@ -49,15 +49,19 @@ export class DailyForm extends Component {
 
   handleLastDo = (e, name) => {
     e.preventDefault()
-    this.database.getYesterday(this.props.team, name)
-    .then((result) => {
-      const arr = []
-      const data = result.val()
-      console.log(data)
-      this.setState({
-        yesterday: data.today,
+    if(name !== undefined) {
+      this.database.getYesterday(this.props.team, name)
+      .then((result) => {
+        const arr = []
+        const data = result.val()
+        console.log(data)
+        this.setState({
+          yesterday: data.today,
+        })
       })
-    })
+    } else {
+      alert('Please enter your name. :)')
+    }
   }
 
   handleChange = (event, fieldName) => {
