@@ -5,7 +5,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const PurifyCSSPlugin = require('purifycss-webpack-plugin')
 
 const task = 'production'
-const nodePort = process.env.NODE_PORT || '3000'
 const lineUrl = process.env.LINE_URL || ''
 const lineToken = process.env.LINE_TOKEN || ''
 
@@ -64,17 +63,6 @@ module.exports = {
         exclude: /(node_modules)/,
       },
     ],
-  },
-  devServer: {
-    host: '0.0.0.0',
-    hot: true,
-    inline: true,
-    port: nodePort,
-    historyApiFallback: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials': 'true',
-    },
   },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
