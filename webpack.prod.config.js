@@ -68,13 +68,6 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.NamedModulesPlugin(),
     new ExtractTextPlugin('styles.css'),
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: { except: ['$super', '$', 'exports', 'require', 'window', 'global', 'self', '__webpack_require__'] },
-    }),
-    new PurifyCSSPlugin({
-      basePath: process.cwd(),
-      purifyOptions: { minify: true },
-    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(task),
@@ -86,6 +79,11 @@ module.exports = {
         storageBucket: JSON.stringify(process.env.storageBucket),
         messagingSenderId: JSON.stringify(process.env.messagingSenderId),
       },
+    }),
+    new webpack.optimize.UglifyJsPlugin(),
+    new PurifyCSSPlugin({
+      basePath: process.cwd(),
+      purifyOptions: { minify: true },
     }),
   ],
 }
