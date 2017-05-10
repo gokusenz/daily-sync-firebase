@@ -20,7 +20,7 @@ const DailyForm = ({ handleSubmit, handleLastDo, handleChange, name, yesterday, 
     </div>
     <div className="form-group">
       <label htmlFor="yesterday" className="col-md-3 col-sm-2 control-label">
-        เมื่อวานทำอะไร
+        เมื่อวานทำอะไร<br />
         <button className="btn btn-warning" onClick={e => handleLastDo(e, name)}>Get Yesterday</button>
       </label>
       <div className="col-md-8 col-sm-10" >
