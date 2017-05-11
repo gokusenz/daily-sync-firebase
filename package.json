@@ -9,12 +9,12 @@
     "build": "webpack --config webpack.prod.config.js --progress",
     "build:all": "npm run build:client && npm run build:server",
     "build:client": "webpack --config webpack.prod.config.js",
-    "build:server": "babel -d dist src --copy-files",
+    "build:server": "babel -d dist/server src/server && babel -d dist/common src/common",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "jest --config .jestrc",
     "test:watch": "npm run test -- --watch",
-    "start-dev-ssr": "nodemon ./src/server/index.js",
+    "dev:server": "nodemon ./src/server/index.js --exec \"npm run build:all && node\"",
     "start": "node dist/server/index.js"
   },
   "author": "",
@@ -53,7 +53,6 @@
     "react-addons-test-utils": "^15.4.2",
     "react-hot-loader": "^3.0.0-beta.6",
     "redux-mock-store": "^1.2.2",
-    "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.13.2",
     "url-loader": "^0.5.8",
@@ -75,6 +74,7 @@
     "react-router": "~3.0.2",
     "react-router-redux": "^4.0.8",
     "redux": "^3.6.0",
-    "redux-api-middleware": "^1.0.3"
+    "redux-api-middleware": "^1.0.3",
+    "redux-thunk": "^2.2.0"
   }
 }

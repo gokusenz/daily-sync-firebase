@@ -10,12 +10,11 @@ const lineToken = process.env.LINE_TOKEN || ''
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: [
-    'react-hot-loader/patch',
-    path.resolve('src/client/index.js'),
-  ],
+  entry: {
+    app: path.resolve(__dirname, 'src/client/index.js'),
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'public/dist'),
     publicPath: 'public/dist/',
   },
@@ -80,7 +79,23 @@ module.exports = {
         messagingSenderId: JSON.stringify(process.env.messagingSenderId),
       },
     }),
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: { except: ['$super', '$', 'exports', 'require', 'window', 'global', 'self', '__webpack_require__'] },
+    }),
+    new PurifyCSSPlugin({
+      basePath: process.cwd(),
+      purifyOptions: { minify: true },
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendors',
+      minChunks (module) {
+        return module.context && module.context.indexOf('node_modules') !== -1
+      },
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      minChunks: Infinity,
+    }),
     new PurifyCSSPlugin({
       basePath: process.cwd(),
       purifyOptions: { minify: true },
