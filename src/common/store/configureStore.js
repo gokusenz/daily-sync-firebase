@@ -25,7 +25,7 @@ export default (history, initialState = {}) => {
   const store = createStore(
     rootReducer,
     initialState,
-    composeEnhancers(applyMiddleware(...middlewares)),
+    compose(applyMiddleware(...middlewares)),
   )
 
   store.dispatch = promise(store)
