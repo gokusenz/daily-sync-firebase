@@ -5,3 +5,6 @@
 
 ## start server
 `npm run dev`
+
+## RUN Server
+`npm start`
