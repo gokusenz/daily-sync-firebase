@@ -1,3 +1,4 @@
+require('babel-polyfill')
 const path = require('path')
 require('dotenv').config()
 const webpack = require('webpack')
@@ -11,6 +12,7 @@ module.exports = {
   devtool: 'eval-source-map',
   entry: [
     'react-hot-loader/patch',
+    'babel-polyfill',
     path.resolve('src/client/index.js'),
   ],
   output: {
