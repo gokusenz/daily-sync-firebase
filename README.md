@@ -1,4 +1,4 @@
-# Daily sync with firebase (ReactJS) with Server side rendering
+# Daily sync with firebase (ReactJS) with Server side rendering (with Firebase)
 
 ## install packages
 `npm install`
