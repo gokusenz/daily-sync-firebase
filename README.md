@@ -8,3 +8,6 @@
 
 ## RUN Server
 `npm start`
+
+## Firebase Deploy
+`firebase deploy`
