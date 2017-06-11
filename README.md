@@ -9,5 +9,8 @@
 ## RUN Server
 `npm start`
 
+## webpack build
+`npm run build`
+
 ## Firebase Deploy
 `firebase deploy`
