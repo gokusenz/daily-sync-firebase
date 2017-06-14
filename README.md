@@ -12,5 +12,8 @@
 ## webpack build
 `npm run build`
 
+## Firebase init
+`firebase init`
+
 ## Firebase Deploy
 `firebase deploy`
